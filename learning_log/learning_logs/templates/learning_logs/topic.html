@@ -1,0 +1,36 @@
+{% extends "learning_logs/base.html" %}
+{% block page_header %}
+
+    <style>
+        .but { color: rgb(213, 162, 3) }
+        .col { color: rgb(188, 67, 252)}
+    </style>
+ <h3 class="but">{{ topic }}</h3>
+
+{% endblock page_header %}
+{% block content %}
+
+<p>
+    <a class="but" id="2333" href="{% url 'learning_logs:new_entry' topic.id %}">Создать новую запись</a>
+</p>
+<ul>
+    {% for entry in entries %}
+        <div class="card mb-3">
+            <h4 class="card-header">
+                {{ entry.date_added|date:'M d, Y H:i' }}
+                <small><a class="but" id="3333" href="{% url 'learning_logs:edit_entry' entry.id %}">Редактировать запись</a></small>
+            </h4>
+            <div class="card-body">
+                {{ entry.text|linebreaks }}
+            </div>
+        </div>
+    {% empty %}
+        <p class="col">В этой теме пока нет записей.</p>
+    {% endfor %}
+
+</ul>
+    <h5>
+        <a class="red" id="33333" href="{% url 'learning_logs:delete_topic' topic.id %}">Удалить тему</a>
+    </h5>
+
+{% endblock content %}

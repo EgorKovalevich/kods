@@ -1,0 +1,17 @@
+{% extends "learning_logs/base.html" %}
+{% block page_header %}
+
+<style>
+    .but { background: rgb(213, 162, 3); }
+</style>
+
+    <div class='jumbotron'>
+        <h1 class="display-3">Отслеживайте свое обучение.</h1>
+        <p class="lead">Создайте свой собственный журнал обучения и ведите список темы, которые вы изучаете. Всякий раз, когда вы узнаете что-то новое о теме, сделайте запись, резюмируя то, что вы узнали.</p>
+        <a class="btn btn-lg btn-primary, but", id="1234" href="{% url 'users:register' %}" role="button">Зарегистрироваться &raquo;</a>
+    </div>
+
+{% endblock page_header %}
+
+
+

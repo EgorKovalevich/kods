@@ -1,0 +1,28 @@
+{% extends "learning_logs/base.html" %}
+{% block page_header %}
+
+    <style>
+        .but { color: rgb(213, 162, 3)}
+        .col { color: rgb(188, 67, 252)}
+    </style>
+    <h1 class="but">Темы:</h1>
+
+{% endblock page_header %}
+{% block content %}
+
+<ul>
+    {% for topic in topics %}
+        <li><h3>
+            <a href="{% url 'learning_logs:topic' topic.id %}" id="1223">{{ topic }}</a>
+        </h3></li>
+    {% empty %}
+        <li><h3 class="col">Темы еще не добавлены.</h3></li>
+    {% endfor %}
+</ul>
+
+ <h3>
+     <a class="but" id="1122" href="{% url 'learning_logs:new_topic' %}">Создать новую тему:</a>
+ </h3>
+
+
+{% endblock content %}

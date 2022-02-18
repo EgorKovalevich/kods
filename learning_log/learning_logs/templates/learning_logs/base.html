@@ -1,0 +1,95 @@
+{% load bootstrap4 %}
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Журнал</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <link rel="stylesheet" href="{% static 'learning_logs/css/style.css' %}">
+
+</head>
+
+<body>
+<div class="solid"></div>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" id="1222" href="{% url 'learning_logs:index'%}">Журнал обучения</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" id="1111" href="{% url 'learning_logs:topics'%}">Темы</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item, col">
+                    <span class="navbar-text" >Привет, {{ user.username }} !</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="11" href="{% url 'users:logout' %}">Выход</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:register' %} ">Зарегистрироваться</a>
+                </li>
+                <li>
+                    <a class="nav-link">/</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:login' %}">Aвторизироваться</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="square"></div>
+
+<script>
+    
+    function rain(){
+        let amount = 200
+        let body = document.querySelector('body')
+        let i = 0
+        while (i < amount){
+            let drop = document.createElement('i')
+            let size = Math.random() * 5
+            let posX = Math.floor(Math.random() * window.innerWidth)
+            let delay = Math.random() * - 20
+            let duration = Math.random() * 5
+
+            drop.style.width = 0.2 + size + 'px'
+            drop.style.left = posX + 'px'
+            drop.style.animationDelay = delay + 's'
+            drop.style.animationDuration =1 + duration + 's'
+            body.appendChild(drop)
+            i++
+        }
+    }
+
+    rain();
+</script>
+
+
+
+<main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+        {% block page_header %}{% endblock page_header %}
+    </div>
+    <div>
+        {% block content %}{% endblock content %}
+    </div>
+
+</main>
+
+</body>
+
+</html>

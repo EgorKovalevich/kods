@@ -1,0 +1,23 @@
+{% extends "learning_logs/base.html" %}
+{% block page_header %}
+
+    <style>
+        .col { color: rgb(213, 162, 3) }
+        .but { background: rgb(213, 162, 3); }
+        .red { color: rgb(255, 0, 0)}
+    </style>
+    <h1 class="col">Создать новую запись:</h1>
+
+{% endblock page_header %}
+{% block content %}
+
+    <h1>
+        <p><a class="col" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+    </h1>
+    <form action="{% url 'learning_logs:new_entry' topic.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name='submit' id="2233" class="btn btn-primary, but">Создать запись</button>
+    </form>
+
+ {% endblock content %}

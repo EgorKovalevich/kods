@@ -1,0 +1,28 @@
+{% extends "learning_logs/base.html" %}
+{% block page_header %}
+
+    <style>
+        .col { color: rgb(213, 162, 3) }
+        .but { background: rgb(213, 162, 3); }
+        .red { color: rgb(255, 0, 0)}
+    </style>
+    <h1 class="col">Изменить запись:</h1>
+
+{% endblock page_header %}
+{% block content %}
+
+    <h1>
+        <p><a class="col" href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+    </h1>
+
+    <h5>
+    <a class="red" id="222" href="{% url 'learning_logs:delete_entry' entry.id %}">Удалить запись</a>
+    </h5>
+    <form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button name='submit' id="333" class="btn btn-primary, but">Сохранить изменения</button>
+    </form>
+
+ {% endblock content %}
+

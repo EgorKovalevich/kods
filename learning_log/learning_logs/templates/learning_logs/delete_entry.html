@@ -1,0 +1,22 @@
+{% extends "learning_logs/base.html" %}
+{% block page_header %}
+
+    <style>
+        .but { color: rgb(2, 255, 7)}
+        .yellow { color: rgb(213, 162, 3)}
+        .red { background: rgb(255, 0, 0)}
+    </style>
+    <div class="text-center">
+        <h3 class="align-middle, yellow">Удалить запись?</h3>
+    </div>
+
+{% endblock page_header %}
+{% block content %}
+
+<form class="text-center " action="{% url 'learning_logs:delete_entry' entry.id %}" method='post'>
+    {% csrf_token %}
+    <a class="but" href="{% url 'learning_logs:topic' topic.id %}">Отменить</a>
+    <button name='submit' id="22" class="btn btn-primary, red">Удалить</button>
+</form>
+
+{% endblock content %}
